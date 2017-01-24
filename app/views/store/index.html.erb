@@ -1,7 +1,19 @@
-<% @categories.each do |category| %>
-  <%= link_to category.title, category_path(category) %>
-<% end %>
+<div class="container">
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Categories
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <% @categories.each do |category| %>
+        <li><%= link_to category.title, category_path(category) %></li>
+      <% end %>
+    </ul>
+  </div>
 
-<% @items.each do |item| %>
-  <p><%= item.title %> | <%= number_to_currency(item.price) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item) %></p>
-<% end %>
+
+
+  <% @items.each do |item| %>
+    <p><%= item.title %> | <%= number_to_currency(item.price.to_f/100) %><%= button_to 'Add to Cart', line_items_path(item_id: item), class: "btn btn-default"%></p>
+  <% end %>
+</div>
